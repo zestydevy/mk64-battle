@@ -47,17 +47,26 @@ SECTIONS
     }
     END_SEG(baserom)
     baseromEnd = __romPos;
-    extRamStart = 0xFFFFFFFF800E8E58;
+    extRamStart = 0xFFFFFFFF800E8E50;
     . = extRamStart;
 
     ROM_PATCH(0x001E6C)
     {
         BUILD_DIR/src/patches/dma_hook.o(.text);
     }
+    ROM_PATCH(0x349C)
+    {
+        BUILD_DIR/src/patches/cursor_hook.o(.text);
+    }
     ROM_PATCH(0xE9A60)
     {
         BUILD_DIR/src/patches/dma.o(.text);
         BUILD_DIR/src/patches/dma.o(.*data*);
+    }
+    /* replace donut course blocks */
+    ROM_PATCH(0x107740)
+    {
+        BUILD_DIR/src/patches/coin_hook.o(.text);
     }
     /* replace object display with custom update */
     ROM_PATCH(0x10C544)
@@ -81,7 +90,14 @@ SECTIONS
     BEGIN_SEG(object, .)
     {
         BUILD_DIR/src/custom/update_objects.o(.text);
+        BUILD_DIR/src/custom/coin.o(.text);
+        BUILD_DIR/src/custom/select_cpu.o(.text);
         BUILD_DIR/src/custom/update_objects.o(.*data*);
+        BUILD_DIR/src/custom/coin.o(.*data*);
+        . = ALIGN(128);
+        BUILD_DIR/src/custom/model_coin.o(.*data*);
+        . = ALIGN(128);
+        BUILD_DIR/src/custom/texture_coin.o(.*data*);
     }
     END_SEG(object)
 

@@ -35,7 +35,7 @@ OBJS := $(C_OBJS) $(A_OBJS) $(Z64_IN_OBJ)
 
 # Flags
 CFLAGS      := -c -mabi=32 -ffreestanding -mfix4300 -G 0 -fno-zero-initialized-in-bss -Wall -Wextra -Wpedantic
-CPPFLAGS    := -Iinclude -I../mk64/include -I../mk64/include/libc -I../mk64/include/PR -DF3DEX_GBI_2 -D_LANGUAGE_C
+CPPFLAGS    := -Iinclude -I../mk64/include -I../mk64/include/libc -I../mk64/include/PR -DF3DEX_GBI -D_LANGUAGE_C
 OPTFLAGS    := -Os
 ASFLAGS     := -c -x assembler-with-cpp -mabi=32 -ffreestanding -mfix4300 -G 0 -O -Iinclude
 LD_SCRIPT   := mk64.ld

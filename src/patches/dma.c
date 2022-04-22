@@ -10,6 +10,8 @@ void dma_copy(u32 dest, u32 src, u32 size);
 
 void dmaCustomCode()
 {
-    dma_copy((u32)_objectSegmentStart, (u32)_objectSegmentRomStart, (u32)(_objectSegmentRomEnd - _objectSegmentRomStart));
+    osInvalDCache((void *)_objectSegmentStart, ALIGN16((_objectSegmentRomEnd - _objectSegmentRomStart)));
+    osInvalICache((void *)_objectSegmentStart, ALIGN16((_objectSegmentRomEnd - _objectSegmentRomStart)));
+    dma_copy((u32)_objectSegmentStart, (u32)_objectSegmentRomStart, ALIGN16((u32)(_objectSegmentRomEnd - _objectSegmentRomStart)));
     func_800010CC();
 }

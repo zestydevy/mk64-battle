@@ -55,6 +55,11 @@
 
 #define MAX_OBJECTS 100
 
+#define	LOADNOPUSH	0
+#define	LOADPUSH	1
+#define	MULNOPUSH	2
+#define	MULPUSH		3
+
 typedef struct {
 			short   category;
 			short   flag;
@@ -68,10 +73,24 @@ typedef struct {
 			Bump    bump;
 } TObject;
 
+// initial_map_object
+void func_8029DB44();
+// add_object_buffer
+short func_8029EC88(Vector pos, SVector angle, Vector velo, short category);
+
+void place_all_item_boxes(u32 boxes);
+
 // display_fake_itembox
 void func_802A171C(Camera * camera, TObject * object);
 // display_itembox
 void func_802A1EA0(Camera * camera, TObject * object);
+
+// create_modeling_matrix
+void func_802B5F74(AffineMtx mtx, Vector position, SVector angle);
+// scale_matrix
+void func_802B5F00(AffineMtx mtx, float scale);
+// set_matrix
+s32 func_802B4FF8(AffineMtx mtx, s32 mode);
 
 void update_obj_falling_rocks(TObject * obj); 
 void update_obj_green_shell(TObject * obj);   

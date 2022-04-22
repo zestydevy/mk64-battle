@@ -43,4 +43,8 @@ typedef struct Controller{
 
 } Controller;
 
+void read_controllers();
+
+extern u8 coin_hud_texture[]; 
+
 #endif

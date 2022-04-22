@@ -3,6 +3,7 @@
 #include "object.h"
 #include "camera.h"
 #include "screen.h"
+#include "coin.h"
 
 // object buffer
 extern TObject D_8015F9B8[];
@@ -33,6 +34,7 @@ void display_object2(Screen * screen)
             case IBOX:      func_802A1EA0(camera, obj);     break;
 	        // display_itembox
             case SIBOX:     func_802A1EA0(camera, obj);     break;
+            case COIN:      display_coin(camera, obj);      break;
 	    }
 	}
 }
@@ -68,6 +70,7 @@ void object_strategy1(void)
 	        case    MKANBAN:    update_obj_mario_raceway_sign(obj); break;
 	        case    WKANBAN:    update_obj_wario_stadium_sign(obj); break;
 	        case    FUMIKIRI:   update_obj_railroad_crossing(obj);  break;
+            case    COIN:       update_obj_coin(obj);               break;
 	        case    TREE1:            
 	        case    TREE2:            
 	        case    TREE3:            
